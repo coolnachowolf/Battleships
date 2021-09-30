@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 """
 Battleship Project
 Name:
@@ -194,6 +193,7 @@ def getClickedCell(data, event):
     x = int(event.y/(data["board_size"]/data["rows"]))
     y = int(event.x/(data["board_size"]/data["cols"]))
     return [x,y]
+    
 
 '''
 drawShip(data, canvas, ship)
@@ -673,4 +673,4 @@ if __name__ == "__main__":
     test.testGetClickedCell()
     ## Finally, run the simulation to test it manually ##
     # runSimulation(500, 500)
->>>>>>> 9ddc8e8bcedd1eea26881bafeafec5d5d5574440
+
