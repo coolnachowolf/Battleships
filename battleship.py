@@ -25,6 +25,7 @@ Parameters: dict mapping strs to values
 Returns: None
 '''
 def makeModel(data):
+
     data["rows"] = 10
     data["cols"] = 10
     data["board_size"] = 500
@@ -137,8 +138,8 @@ Parameters: dict mapping strs to values ; Tkinter canvas ; 2D list of ints ; boo
 Returns: None
 '''
 def drawGrid(data, canvas, grid, showShips):
-    for i in range(data["rows"]):
-        for j in range(data["rows"]):
+    for i in range(data["rows_cols"]):
+        for j in range(data["rows_cols"]):
             a = data["cell_size"]*i 
             b = data["cell_size"]*j
             c = data["cell_size"]+a
