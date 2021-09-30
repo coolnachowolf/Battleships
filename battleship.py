@@ -190,9 +190,7 @@ Parameters: dict mapping strs to values ; mouse event object
 Returns: list of ints
 '''
 def getClickedCell(data, event):
-    x = int(event.y/(data["board_size"]/data["rows"]))
-    y = int(event.x/(data["board_size"]/data["cols"]))
-    return [x,y]
+    return
 
 '''
 drawShip(data, canvas, ship)
