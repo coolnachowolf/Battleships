@@ -231,6 +231,14 @@ Parameters: dict mapping strs to values
 Returns: None
 '''
 def placeShip(data):
+    if shipIsValid(data["user_board"], data["temp_ship"]):
+        ship = data["temp_ship"]
+        for i in ship:
+            data["user_board"][i[0]][i[1]] = SHIP_UNCLICKED
+        data["numships"] += 1
+    else:
+        print("Error:ship is not valid")
+    data["temp_ship"] = []
     return
 
 
@@ -345,7 +353,7 @@ def runSimulation(w, h):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    test.testShipIsValid()
+    test.test()
     ## Finally, run the simulation to test it manually ##
     runSimulation(500, 500)
 
