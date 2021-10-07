@@ -157,7 +157,14 @@ Parameters: 2D list of ints
 Returns: bool
 '''
 def isVertical(ship):
-    return
+    x = sorted(ship)
+    y = x[2][0]-x[1][0]
+    z = x[1][0]-x[0][0]
+    if(x[0][1]==x[1][1]==x[2][1]):
+        if(y == 1):
+            if(z==1):
+                return True
+    return False
 
 
 '''
@@ -316,6 +323,6 @@ def runSimulation(w, h):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-
+    test.testIsVertical()
     ## Finally, run the simulation to test it manually ##
     # runSimulation(500, 500)
