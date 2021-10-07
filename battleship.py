@@ -1,3 +1,4 @@
+
 """
 Battleship Project
 Name:
@@ -336,6 +337,7 @@ if __name__ == "__main__":
     test.testGetClickedCell()
     ## Finally, run the simulation to test it manually ##
     # runSimulation(500, 500)
+
 
 
 
