@@ -1,3 +1,4 @@
+
 """
 Battleship Project
 Name:
@@ -202,13 +203,14 @@ Parameters: dict mapping strs to values ; Tkinter canvas; 2D list of ints
 Returns: None
 '''
 def drawShip(data, canvas, ship):
+
     for i in range(len(ship)):
         a = data["cell_size"] * ship[i][1]
         b = data["cell_size"] * ship[i][0]
         c = data["cell_size"]+(ship[i][1]*data["cell_size"])
         d = data["cell_size"]+(ship[i][0]*data["cell_size"])
         canvas.create_rectangle(a, b, c ,d, fill="white")
-    return
+   
 
 
 '''
@@ -217,12 +219,14 @@ Parameters: 2D list of ints ; 2D list of ints
 Returns: bool
 '''
 def shipIsValid(grid, ship):
+
     if checkShip(grid, ship):
         if isHorizontal(ship):
             return True
         elif isVertical(ship):
             return True
     return False
+
 
 
 '''
@@ -298,6 +302,7 @@ def drawGameOver(data, canvas):
     return
 
 
+
 ### SIMULATION FRAMEWORK ###
 
 from tkinter import *
@@ -353,7 +358,7 @@ def runSimulation(w, h):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    test.test()
+    test.testGetClickedCell()
     ## Finally, run the simulation to test it manually ##
-    runSimulation(500, 500)
+    # runSimulation(500, 500)
 
