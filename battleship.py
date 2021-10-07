@@ -1,3 +1,4 @@
+
 """
 Battleship Project
 Name:
@@ -25,13 +26,14 @@ Parameters: dict mapping strs to values
 Returns: None
 '''
 def makeModel(data):
-    data["rows_cols"] = 10
+    data["rows"] = 10
+    data["cols"] = 10
     data["board_size"] = 500
     data["numShips"] = 5
-    data["cell_size"] = (data["board_size"])/(data["rows_cols"])
-    data["computer_board"] = emptyGrid(data["rows_cols"], data["rows_cols"])
+    data["cell_size"] = (data["board_size"])/(data["rows"]*data["cols"])
+    data["computer_board"] = emptyGrid(data["rows"], data["cols"])
     data["user_board"] = test.testGrid()
-    #emptyGrid(data["rows_cols"], data["rows_cols"])
+    #emptyGrid(data["rows"], data["cols"])
     data["computer_board"] = addShips(data["computer_board"] ,data["numShips"])
     
     return
@@ -136,8 +138,8 @@ Parameters: dict mapping strs to values ; Tkinter canvas ; 2D list of ints ; boo
 Returns: None
 '''
 def drawGrid(data, canvas, grid, showShips):
-    for i in range(data["rows_cols"]):
-        for j in range(data["rows_cols"]):
+    for i in range(data["rows"]):
+        for j in range(data["rows"]):
             a = data["cell_size"]*i 
             b = data["cell_size"]*j
             c = data["cell_size"]+a
@@ -189,8 +191,10 @@ Parameters: dict mapping strs to values ; mouse event object
 Returns: list of ints
 '''
 def getClickedCell(data, event):
-    return
-
+    x = int(event.y/(data["board_size"]/data["rows"]))
+    y = int(event.x/(data["board_size"]/data["cols"]))
+    return [x,y]
+    
 
 '''
 drawShip(data, canvas, ship)
@@ -330,6 +334,10 @@ def runSimulation(w, h):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    test.testIsHorizontal()
+    test.testGetClickedCell()
     ## Finally, run the simulation to test it manually ##
     # runSimulation(500, 500)
+
+
+
+
