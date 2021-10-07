@@ -26,16 +26,16 @@ Parameters: dict mapping strs to values
 Returns: None
 '''
 def makeModel(data):
-    data["rows"] = 10
-    data["cols"] = 10
+    data["rows_cols"] = 10
     data["board_size"] = 500
     data["numShips"] = 5
-    data["cell_size"] = (data["board_size"])/(data["rows"]*data["cols"])
-    data["computer_board"] = emptyGrid(data["rows"], data["cols"])
+    data["cell_size"] = (data["board_size"])/(data["rows_cols"])
+    data["empty_ship"] = []
+    data["computer_board"] = emptyGrid(data["rows_cols"],data["rows_cols"])
     data["user_board"] = test.testGrid()
-    #emptyGrid(data["rows"], data["cols"])
+    #emptyGrid(data["rows_cols"],data["rows_cols"])
     data["computer_board"] = addShips(data["computer_board"] ,data["numShips"])
-    
+    data["temp_ship"] = createShip()
     return
 
 
@@ -46,7 +46,8 @@ Returns: None
 '''
 def makeView(data, userCanvas, compCanvas):
     drawGrid(data, userCanvas, data["user_board"], True)
-    drawGrid(data, userCanvas, data["computer_board"], True)
+    drawGrid(data, compCanvas, data["computer_board"], True)
+    drawShip(data, userCanvas, data["temp_ship"])
     return
 
 
@@ -138,12 +139,12 @@ Parameters: dict mapping strs to values ; Tkinter canvas ; 2D list of ints ; boo
 Returns: None
 '''
 def drawGrid(data, canvas, grid, showShips):
-    for i in range(data["rows"]):
-        for j in range(data["rows"]):
+    for i in range(data["rows_cols"]):
+        for j in range(data["rows_cols"]):
             a = data["cell_size"]*i 
             b = data["cell_size"]*j
-            c = data["cell_size"]+a
-            d = data["cell_size"]+b
+            c = data["cell_size"] + a
+            d = data["cell_size"] + b
             canvas.create_rectangle(a, b, c, d, fill="blue")
             if showShips == True:
                 if grid[i][j] == SHIP_UNCLICKED:
@@ -191,8 +192,8 @@ Parameters: dict mapping strs to values ; mouse event object
 Returns: list of ints
 '''
 def getClickedCell(data, event):
-    x = int(event.y/(data["board_size"]/data["rows"]))
-    y = int(event.x/(data["board_size"]/data["cols"]))
+    x = int(event.y/(data["board_size"]/data["rows_cols"]))
+    y = int(event.x/(data["board_size"]/data["rows_cols"]))
     return [x,y]
     
 
@@ -202,7 +203,14 @@ Parameters: dict mapping strs to values ; Tkinter canvas; 2D list of ints
 Returns: None
 '''
 def drawShip(data, canvas, ship):
-    return
+
+    for i in range(len(ship)):
+        a = data["cell_size"] * ship[i][1]
+        b = data["cell_size"] * ship[i][0]
+        c = data["cell_size"]+(ship[i][1]*data["cell_size"])
+        d = data["cell_size"]+(ship[i][0]*data["cell_size"])
+        canvas.create_rectangle(a, b, c ,d, fill="white")
+   
 
 
 '''
@@ -211,7 +219,14 @@ Parameters: 2D list of ints ; 2D list of ints
 Returns: bool
 '''
 def shipIsValid(grid, ship):
-    return
+
+    if checkShip(grid, ship):
+        if isHorizontal(ship):
+            return True
+        elif isVertical(ship):
+            return True
+    return False
+
 
 
 '''
@@ -279,6 +294,7 @@ def drawGameOver(data, canvas):
     return
 
 
+
 ### SIMULATION FRAMEWORK ###
 
 from tkinter import *
@@ -337,7 +353,4 @@ if __name__ == "__main__":
     test.testGetClickedCell()
     ## Finally, run the simulation to test it manually ##
     # runSimulation(500, 500)
-
-
-
 
