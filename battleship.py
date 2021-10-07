@@ -284,6 +284,10 @@ Parameters: dict mapping strs to values ; 2D list of ints ; int ; int ; str
 Returns: None
 '''
 def updateBoard(data, board, row, col, player):
+    if board[row][col] == SHIP_UNCLICKED:
+        board[row][col] = SHIP_CLICKED
+    elif board[row][col] == EMPTY_UNCLICKED:
+        board[row][col] = EMPTY_CLICKED
     return
 
 
@@ -293,6 +297,12 @@ Parameters: dict mapping strs to values ; int ; int
 Returns: None
 '''
 def runGameTurn(data, row, col):
+    for i in range(0,row):
+        for j in range(0,col):
+            if data["computer_board"][i][j] == SHIP_CLICKED or data["computer_board"][i][j] == EMPTY_CLICKED:
+                return None
+            elif data["computer_board"][i][j] != SHIP_CLICKED or data["computer_board"][i][j] != EMPTY_CLICKED:
+                updateBoard(data, data["computer_board"], row, col, "user")
     return
 
 
