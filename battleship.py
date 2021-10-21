@@ -351,11 +351,11 @@ def drawGameOver(data, canvas):
     elif data["winner"] == "comp":
         canvas.create_rectangle(0, 150, 500, 300, fill='white', outline='black')
         canvas.create_text(250, 170, text="You Lost", fill="hotpink4", font=('Book Antiqua', 40, 'bold'))
-        canvas.create_text(250, 220, text="Computer Won", fill="hotpink4", font=('Book Antiqua', 30, 'bold'))
+        canvas.create_text(250, 220, text="Loser! Computer Won", fill="hotpink4", font=('Book Antiqua', 30, 'bold'))
         canvas.create_text(250, 270, text="Press ENTER to play again", fill="hotpink4", font=('Book Antiqua', 30, 'bold'))
     elif data["winner"] == "draw":
         canvas.create_rectangle(0, 150, 500, 300, fill='white', outline='black')
-        canvas.create_text(250, 170, text="Draw Game", fill="hotpink4", font=('Book Antiqua', 40, 'bold'))
+        canvas.create_text(250, 170, text="Draw Game", fill="hotpink4", font=('Book Antiqua', 40,'bold'))
         canvas.create_text(250, 220, text="Out of Moves!", fill="hotpink4", font=('Book Antiqua', 30, 'bold'))
         canvas.create_text(250, 270, text="Press ENTER to play again", fill="hotpink4", font=('Book Antiqua', 30, 'bold'))
 
